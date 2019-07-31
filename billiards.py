@@ -15,8 +15,10 @@ class Ball:
         self.pos = pos              #position
         self.fC  = 0                #force carrying
 
-    def amMoving(self, f, cr1, mp, thet, width, height, fR, dur, overRide):
+    def amMoving(self, f, cr1, mp, width, height, fR, dur, overRide):
         global check
+        global thet
+
         t = dur
         m = self.m
 
@@ -69,7 +71,7 @@ class Ball:
             print('I tried man but you in a wall')
             return False
     
-    def wallHit(self, thet, cr2, d, f0, width, height):
+    def wallHit(self, cr2, d, width, height):
         
         print("dims are {} x {}".format(width, height))
         print("My position is {}".format(self.pos))
@@ -139,7 +141,7 @@ while t <= 30:  #30 'seconds'. Each frame moves forward dur second
         x = ball.pos[0] 
         y = ball.pos[1]
         
-        if ball.amMoving(f, cr1, mP, thet, width, height, fR, dur, False) == True:
+        if ball.amMoving(f, cr1, mP, width, height, fR, dur, False) == True:
             pass
             # if (x >= 0 and x <= width) and (y >= 0 and y <=height):
             # ball.amMoving(f, cr1, mP, thet, width, height, fR, dur)
@@ -147,11 +149,11 @@ while t <= 30:  #30 'seconds'. Each frame moves forward dur second
 
             posA[i] = ball.pos
             t = t + dur
-        elif ball.amMoving(f, cr1, mP, thet, width, height, fR, dur, False) == False: #x <= 0 or x >= width) or (y <= 0 or y>= height):
+        elif ball.amMoving(f, cr1, mP, width, height, fR, dur, False) == False: #x <= 0 or x >= width) or (y <= 0 or y>= height):
             print('wall')
 
             while (x not in range(int(width))) or (y not in range(int(height))):
-                ball.amMoving(f, cr1, mP, thet, width, height, fR, dur, True)
+                ball.amMoving(f, cr1, mP, width, height, fR, dur, True)
 
             posA[i] = ball.pos
             #ax.add_artist(circs[i])
@@ -170,4 +172,3 @@ while t <= 30:  #30 'seconds'. Each frame moves forward dur second
     plt.pause(.01)
     plt.clf()
     
- 
